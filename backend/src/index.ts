@@ -9,6 +9,11 @@ import cors from "cors";
 import { buildSchema } from "type-graphql";
 import "reflect-metadata";
 
+export interface MyContext {
+  req: express.Request;
+  res: express.Response;
+}
+
 const app = express();
 const httpServer = http.createServer(app);
 

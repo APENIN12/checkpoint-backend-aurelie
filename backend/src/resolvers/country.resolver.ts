@@ -1,6 +1,7 @@
 import { Mutation, Query, Resolver } from "type-graphql";
 import Country from "../entities/country.entity";
 import CountryService from "../services/country.service";
+import { QueryRunner } from "typeorm";
 
 @Resolver()
 export default class CountryResolver {
@@ -32,7 +33,10 @@ export default class CountryResolver {
     return new CountryService().deleteCountry(id);
   }
 
-
-
-
+  //ajouter une column continentCode
+  @Mutation(() => Country)
+  async addColunmContinentCode(queryRunner: QueryRunner) {
+    return new CountryService().addColunmContinentCode(queryRunner);
+  }
+  
 }
