@@ -24,6 +24,7 @@ export default class Country {
   @Column()
   emoji: string;
 
+
 }
 
 

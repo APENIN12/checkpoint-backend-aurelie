@@ -39,7 +39,7 @@ export default class CountryService {
     return { ...country, id };
   }
 
-  //ajouter une colonne 
+  //ajouter une colonne continentCode : le plus simple aurait été de créer un column directement dans l'entity mais je ne crois pas que ce soit la consigne 
   async addColunmContinentCode(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn("Continent code", new TableColumn({
       name: "continentCode",
@@ -48,12 +48,12 @@ export default class CountryService {
       isNullable: true,
     }));
 
-  // pour récuperer tous les pays d'un continent
+  // pour récuperer tous les pays d'un continent : vu que la colonne continentCode n'existe pas , beaucoup d'erreurs apparaissent 
   async getCountriesByContinent(continentCode: string) {
-  return await this.db.find({ where: { continentCode } });
+  return await this.db.findBy({ continentCode });
    }
 
-  //autre méthode : modifier un pays
+  //TODO autre méthode : modifier un pays
 }
 
-  
+}
